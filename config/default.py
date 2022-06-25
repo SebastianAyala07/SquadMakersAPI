@@ -5,6 +5,10 @@ class Config(object):
     TESTING = False
     DEBUG = False
     ERROR_404_HELP = False
+    MYSQL_DATABASE_USER = os.getenv("MYSQL_DATABASE_USER")
+    MYSQL_DATABASE_PASSWORD = os.getenv("MYSQL_DATABASE_PASSWORD")
+    MYSQL_DATABASE_DB = os.getenv("MYSQL_DATABASE_DB")
+    MYSQL_DATABASE_HOST = os.getenv("MYSQL_DATABASE_HOST")
 
 
 class Production(Config):
