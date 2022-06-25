@@ -12,7 +12,7 @@ class JokeEspecificRequest:
     @classmethod
     def get_joke(cls, origin):
         try:
-            adapter = cls.joke_origins[origin]
+            adapter = cls.joke_origins[str.lower(origin)]
             response = adapter.get_random_joke()
         except Exception as e:
             response = jsonify(
