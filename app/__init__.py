@@ -1,8 +1,15 @@
-from flask import Flask, url_for
+from flask import Flask
+from flask_restful import Api
+from app.resources.joke import RandomJoke
 
 def create_app(settings_module):
     app = Flask(__name__)
     app.config.from_object(settings_module)
+
+    api = Api(app, catch_all_404s=True)
+    api.add_resource(RandomJoke, "/joke/", "/joke/<string:origin>")
+
+    app.url_map.strict_slashes = False
 
     @app.route("/")
     def home():

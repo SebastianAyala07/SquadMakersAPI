@@ -1,5 +1,7 @@
 #! /bin/sh
 export FLASK_APP="entrypoint:app"
+export CHUCK="https://api.chucknorris.io/"
+export DAD="https://icanhazdadjoke.com/"
 if [ "testing" = $1 ]; then
     export FLASK_ENV="testing"
     export APP_SETTINGS_MODULE="config.default.Testing"
