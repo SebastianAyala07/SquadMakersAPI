@@ -15,8 +15,4 @@ def create_app(settings_module):
 
     app.url_map.strict_slashes = False
 
-    @app.route("/")
-    def home():
-        return "Hello World"
-
     return app
