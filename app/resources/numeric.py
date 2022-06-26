@@ -1,5 +1,7 @@
 from flask import jsonify, request
 from flask_restful import Resource
+from app.models.numeric import Numeric as NumericModel
+
 
 class Numeric(Resource):
 
@@ -8,8 +10,11 @@ class Numeric(Resource):
         numbers = args.get("numbers", False)
         number = args.get("number", False)
         if numbers:
-            pass
+            numbers = [int(i) for i in numbers.split(",")]
+            result = NumericModel.calculate_mcm_from_list_numbers(numbers)
+            return jsonify({"value": result})
         elif number:
-            pass
+            result = NumericModel.add_1(int(number))
+            return jsonify({"value": result})
         else:
             return jsonify({"msg": "parameters not sent correctly"})

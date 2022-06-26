@@ -2,7 +2,7 @@ import os
 import pytest
 from app import create_app
 
-@pytest.fixture(scope="module")
+@pytest.fixture
 def client_testing():
     app_instance = create_app(
         os.getenv("APP_SETTINGS_MODULE")
@@ -13,9 +13,9 @@ def client_testing():
 
 def test_numeric_numbers_endpoint(client_testing):
     params = {
-        "numbers": [5, 4, 3]
+        "numbers": "3,4,5"
     }
-    response = client_testing.get("/num", query_string=params)
+    response = client_testing.get("/num/", query_string=params)
     response = response.get_json()
     assert response["value"] == 60
 
@@ -23,6 +23,6 @@ def test_numeric_number_endpoint(client_testing):
     params = {
         "number": 5
     }
-    response = client_testing.get("/num", query_string=params)
+    response = client_testing.get("/num/", query_string=params)
     response = response.get_json()
     assert response["value"] == 6
