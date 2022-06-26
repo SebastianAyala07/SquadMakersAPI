@@ -26,3 +26,17 @@ def test_numeric_number_endpoint(client_testing):
     response = client_testing.get("/num/", query_string=params)
     response = response.get_json()
     assert response["value"] == 6
+
+def test_joke_endpoit_chuck(client_testing):
+    response = client_testing.get("/joke/dad")
+    assert response.status_code == 200
+    response = response.get_json()
+    print(response)
+    assert isinstance(response["joke"], str)
+
+def test_joke_endpoit_dad(client_testing):
+    response = client_testing.get("/joke/chuck")
+    assert response.status_code == 200
+    response = response.get_json()
+    print(response)
+    assert isinstance(response["joke"], str)
