@@ -4,9 +4,9 @@ from flask_restful import Resource
 class Numeric(Resource):
 
     def get(self):
-        json_data = request.get_json(force=True)
-        numbers = json_data.get("numbers", False)
-        number = json_data.get("number", False)
+        args = request.args.to_dict()
+        numbers = args.get("numbers", False)
+        number = args.get("number", False)
         if numbers:
             pass
         elif number:
