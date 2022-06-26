@@ -2,6 +2,8 @@ version: "3"
 services:
   app:
     build: .
+    depends_on:
+      - db
     links:
       - db
     ports:
@@ -10,8 +12,12 @@ services:
   db:
     image: mysql:latest
     ports:
-      - "30000:3306"
+      - "3306:3306"
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      - MYSQL_DATABASE_USER=root
+      - MYSQL_DATABASE_PASSWORD=root
+      - MYQL_DATABASE_DB=squadmakers
+      - MYSQL_DATABASE_HOST=localhost
+      - MYSQL_ROOT_PASSWORD=root
     volumes:
       - ./db/schemas:/docker-entrypoint-initdb.d/:ro
